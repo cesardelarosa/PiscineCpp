@@ -1,1 +1,8 @@
-*/Subject/
+*
+!C0*/
+!C0*/ex*/
+!C0*/ex*/*.cpp
+!C0*/ex*/*.hpp
+!C0*/ex*/*.tpp
+!C0*/ex*/*.h
+!C0*/ex*/Makefile

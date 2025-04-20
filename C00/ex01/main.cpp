@@ -1,18 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.h                                        :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 11:49:01 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/04/20 11:49:59 by cde-la-r         ###   ########.fr       */
+/*   Created: 2025/04/20 11:58:40 by cde-la-r          #+#    #+#             */
+/*   Updated: 2025/04/20 14:43:13 by cesi             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
-
+# include <iostream>
+# include <string>
+# include <iomanip>
+# include <sstream>
+# include <cstdlib>
 # include "PhoneBook.hpp"
 
-#endif
+int	main(void)
+{
+	std::string	cmd;
+	PhoneBook	phonebook;
+	
+	while (42)
+	{
+		std::cout << "> ";
+		std::getline(std::cin, cmd);
+		if (cmd == "EXIT")
+			break ;
+		if (cmd == "ADD")
+			phonebook.add();
+		else if (cmd == "SEARCH")
+			phonebook.search();
+	}
+	return (0);
+}

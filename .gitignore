@@ -6,3 +6,10 @@
 !C0*/ex*/*.tpp
 !C0*/ex*/*.h
 !C0*/ex*/Makefile
+
+!C0*/ex*/src/
+!C0*/ex*/inc/
+
+!C0*/ex*/src/*.cpp
+!C0*/ex*/inc/*.hpp
+!C0*/ex*/inc/*.h

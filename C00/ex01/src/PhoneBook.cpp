@@ -31,35 +31,24 @@ void PhoneBook::search()
 {
     for (int i = 0; i < _count; i++)
         _contacts[i].printRow(i);
-
     if (_count == 0)
     {
         std::cout << "Phonebook is empty." << std::endl;
         return;
     }
-        
     std::cout << "Enter index to view details (0 to " << _count - 1 << "): ";
-    
     std::string line;
     if (!std::getline(std::cin, line))
         return;
-
     std::stringstream ss(line);
     int index;
-
-    if (ss >> index && ss.eof())
-    {
-        if (index >= 0 && index < _count)
-        {
-            _contacts[index].printCard();
-        }
-        else
-        {
-            std::cout << "Error: Index out of range." << std::endl;
-        }
-    }
-    else
+    if (!(ss >> index) || !ss.eof())
     {
         std::cout << "Error: Invalid input. Please enter a number." << std::endl;
+		return ;
     }
+    if (index >= 0 && index < _count)
+        _contacts[index].printCard();
+    else
+        std::cout << "Error: Index out of range." << std::endl;
 }

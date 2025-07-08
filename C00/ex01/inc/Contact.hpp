@@ -13,20 +13,27 @@
 #pragma once
 #include <string>
 
-class	Contact
+class   Contact
 {
-	public:
-		Contact();
-		~Contact();
+    public:
+        typedef struct s_field {
+            const char* prompt;
+            std::string Contact::* member;
+        } t_field;
 
-		void	fillFromPrompt();
-		void	printRow(int index) const;
-		void	printCard() const;
+        Contact();
+        ~Contact();
 
-	private:
-		std::string _firstName;
-		std::string _lastName;
-		std::string _nickName;
-		std::string _phoneNumber;
-		std::string _darkestSecret;
+        void    fillFromPrompt();
+        void    printRow(int index) const;
+        void    printCard() const;
+
+    private:
+        static const t_field    _fields[];
+
+        std::string _firstName;
+        std::string _lastName;
+        std::string _nickName;
+        std::string _phoneNumber;
+        std::string _darkestSecret;
 };

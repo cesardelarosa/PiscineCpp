@@ -13,18 +13,18 @@
 #pragma once
 #include "Contact.hpp"
 
-class	PhoneBook
+class   PhoneBook
 {
-	public:
-		PhoneBook();
-		~PhoneBook();
+    public:
+        PhoneBook();
+        ~PhoneBook();
 
-		void	add();
-		void	search() const;
+        void    add();
+        void    search();
 
-	private:
-		static const int	_max = 8;
-		Contact				_contacts[_max];
-		int					_next;
-		int					_count;
+    private:
+        static const int    _max = 8;
+        Contact             _contacts[_max];
+        int                 _next;
+        int                 _count;
 };

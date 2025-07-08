@@ -10,28 +10,47 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include <iostream>
-# include <string>
-# include <iomanip>
-# include <sstream>
-# include <cstdlib>
-# include "PhoneBook.hpp"
+#include "PhoneBook.hpp"
+#include <iostream>
+#include <string>
 
-int	main(void)
+typedef void (PhoneBook::*t_func)();
+
+struct s_command
 {
-	std::string	cmd;
-	PhoneBook	phonebook;
-	
-	while (42)
-	{
-		std::cout << "> ";
-		std::getline(std::cin, cmd);
-		if (cmd == "EXIT")
-			break ;
-		if (cmd == "ADD")
-			phonebook.add();
-		else if (cmd == "SEARCH")
-			phonebook.search();
-	}
-	return (0);
+    std::string name;
+    t_func      function;
+};
+
+const s_command* get_commands()
+{
+    static const s_command commands[] = {
+        {"ADD", &PhoneBook::add},
+        {"SEARCH", &PhoneBook::search},
+        {"", NULL}
+    };
+    return commands;
+}
+
+int main(void)
+{
+    PhoneBook phonebook;
+    std::string cmd;
+    const s_command* commands = get_commands();
+
+    while (true)
+    {
+        std::cout << "> ";
+        if (!std::getline(std::cin, cmd) || cmd == "EXIT")
+            break;
+        for (int i = 0; !commands[i].name.empty(); ++i)
+        {
+            if (cmd == commands[i].name)
+            {
+                (phonebook.*(commands[i].function))();
+                break;
+            }
+        }
+    }
+    return (0);
 }

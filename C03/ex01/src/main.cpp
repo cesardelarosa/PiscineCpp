@@ -1,7 +1,7 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
-int main(void)
+int main()
 {
     ScavTrap scav("SC4V-TP");
     scav.guardGate();

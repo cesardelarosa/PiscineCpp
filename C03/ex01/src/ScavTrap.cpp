@@ -92,7 +92,7 @@ void    ScavTrap::beRepaired(unsigned int amount) {
     std::cout << " repairs itself for " << amount << " hit points! Now has " << this->_hitPoints << " HP." << std::endl;
 }
 
-void    ScavTrap::guardGate(void) {
+void    ScavTrap::guardGate() {
 
     std::cout << "ScavTrap " << this->_name << " is now in Gate keeper mode.";
 }

@@ -1,4 +1,4 @@
-NAME     = Brain
+NAME     = safeBrain
 
 SRCDIR   = src
 INCDIR   = inc

@@ -92,7 +92,7 @@ void    FragTrap::beRepaired(unsigned int amount) {
     std::cout << " repairs itself for " << amount << " hit points! Now has " << this->_hitPoints << " HP." << std::endl;
 }
 
-void    FragTrap::highFivesGuys(void) {
+void    FragTrap::highFivesGuys() {
 
     std::cout << "FragTrap " << this->_name << " highs fives!";
 }

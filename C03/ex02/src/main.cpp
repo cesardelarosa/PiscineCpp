@@ -1,7 +1,7 @@
 #include "FragTrap.hpp"
 #include <iostream>
 
-int main(void)
+int main()
 {
     FragTrap frag("FR4G-TP");
     frag.highFivesGuys();

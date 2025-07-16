@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
     const std::string   s2 = argv[3];
 
     if (filename.empty())
-    ft_error("Invalid first argument (filename is empty)", 1);
+        ft_error("Invalid first argument (filename is empty)", 1);
 
     std::ifstream   inputFile(filename.c_str());
     if (!inputFile.is_open())

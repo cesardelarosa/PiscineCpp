@@ -15,8 +15,13 @@
 
 # define ANNOUNCE "BraiiiiiiinnnzzzZ..."
 
-Zombie::Zombie() { }
-Zombie::~Zombie() { }
+Zombie::Zombie()
+{
+}
+
+Zombie::~Zombie()
+{
+}
 
 void    Zombie::setName(std::string name)
 {

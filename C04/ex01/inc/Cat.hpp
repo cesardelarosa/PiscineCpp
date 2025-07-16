@@ -2,17 +2,17 @@
 #include "Animal.hpp"
 #include "Brain.hpp"
 
-class   Cat: public Animal {
-    
-    public: 
-        Cat();
-        Cat(const Cat& copy);
-        ~Cat();
+class Cat : public Animal {
 
-        Cat& operator = (const Cat& rhs);
-        
-        void    makeSound() const;
+public:
+  Cat();
+  Cat(const Cat &copy);
+  ~Cat();
 
-    private:
-        Brain*  brain;
+  Cat &operator=(const Cat &rhs);
+
+  void makeSound() const;
+
+private:
+  Brain *brain;
 };

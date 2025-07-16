@@ -1,14 +1,14 @@
 #pragma once
 #include "Animal.hpp"
 
-class   Cat: public Animal {
-    
-    public: 
-        Cat();
-        Cat(const Cat& copy);
-        ~Cat();
+class Cat : public Animal {
 
-        Cat& operator = (const Cat& rhs);
-        
-        void    makeSound() const;
+public:
+  Cat();
+  Cat(const Cat &copy);
+  ~Cat();
+
+  Cat &operator=(const Cat &rhs);
+
+  void makeSound() const;
 };

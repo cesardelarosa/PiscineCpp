@@ -1,20 +1,17 @@
 #pragma once
 #include <string>
 
-class	Zombie
-{
-	public:
+class Zombie {
+public:
+  Zombie();
+  ~Zombie();
 
-		Zombie();
-		~Zombie();
+  void announce();
+  void setName(std::string name);
 
-		void	announce();
-		void	setName(std::string name);
-	
-	private:
-	
-		std::string	_name;
+private:
+  std::string _name;
 };
 
-Zombie* newZombie(std::string name);
-void    randomChump(std::string name);
+Zombie *newZombie(std::string name);
+void randomChump(std::string name);

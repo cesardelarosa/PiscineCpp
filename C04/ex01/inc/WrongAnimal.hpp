@@ -10,8 +10,8 @@ class   WrongAnimal {
 
         WrongAnimal& operator = (const WrongAnimal& rhs);
         
-        void    makeSound(void) const;
-        std::string getType(void) const;
+        void    makeSound() const;
+        std::string getType() const;
 
     protected:
         std::string type;

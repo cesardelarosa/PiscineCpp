@@ -1,20 +1,24 @@
 #include "Animal.hpp"
 #include <iostream>
 
-Animal::Animal() : type("Generic Animal") {
+Animal::Animal() : type("Generic Animal")
+{
     std::cout << "Animal constructor called" << std::endl;
 }
 
-Animal::Animal (const Animal& copy) {
+Animal::Animal (const Animal& copy)
+{
     std::cout << "Animal copy constructor called" << std::endl;
     *this = copy;
 }
 
-Animal::~Animal () {
+Animal::~Animal ()
+{
     std::cout << "Animal destructor called" << std::endl;
 }
 
-Animal& Animal::operator=(const Animal& rhs) {
+Animal& Animal::operator=(const Animal& rhs)
+{
     std::cout << "Animal assignment operator called" << std::endl;
     if (this != &rhs)
         this->type = rhs.type;
@@ -23,5 +27,5 @@ Animal& Animal::operator=(const Animal& rhs) {
 
 std::string Animal::getType() const
 {
-    return (this->type);
+    return this->type;
 }

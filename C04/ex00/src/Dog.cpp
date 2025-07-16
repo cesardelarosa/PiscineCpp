@@ -1,21 +1,24 @@
 #include "Dog.hpp"
 #include <iostream>
 
-Dog::Dog () : Animal() {
+Dog::Dog () : Animal()
+{
     this->type = "Dog";
 }
 
-Dog::Dog (const Dog& copy) : Animal(copy) {
+Dog::Dog (const Dog& copy) : Animal(copy)
+{
     *this = copy;
 }
 
-Dog::~Dog () {}
+Dog::~Dog ()
+{
+}
 
-Dog& Dog::operator=(const Dog& rhs) {
-    
+Dog& Dog::operator=(const Dog& rhs)
+{
     if (this != &rhs)
         this->type = rhs.type;
-    
     return *this;
 }
 

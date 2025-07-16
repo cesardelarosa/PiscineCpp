@@ -1,19 +1,23 @@
 #include "Animal.hpp"
 #include <iostream>
 
-Animal::Animal() : type("Generic Animal") {}
+Animal::Animal() : type("Generic Animal")
+{
+}
 
-Animal::Animal (const Animal& copy) {
+Animal::Animal (const Animal& copy)
+{
     *this = copy;
 }
 
-Animal::~Animal () {}
+Animal::~Animal ()
+{
+}
 
-Animal& Animal::operator=(const Animal& rhs) {
-    
+Animal& Animal::operator=(const Animal& rhs)
+{
     if (this != &rhs)
         this->type = rhs.type;
-    
     return *this;
 }
 

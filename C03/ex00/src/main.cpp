@@ -1,7 +1,7 @@
 #include <iostream>
 #include "ClapTrap.hpp"
 
-int main(void)
+int main()
 {
     ClapTrap clap("CL4P-TP");
     clap.attack("un Skag");

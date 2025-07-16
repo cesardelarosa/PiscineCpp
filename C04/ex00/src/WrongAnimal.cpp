@@ -17,7 +17,7 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& rhs) {
     return *this;
 }
 
-void WrongAnimal::makeSound(void) const
+void WrongAnimal::makeSound() const
 {
     std::cout << "*WrongAnimal generic sound*" << std::endl;
 }

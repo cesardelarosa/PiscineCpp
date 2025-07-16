@@ -10,5 +10,5 @@ class   Dog: public Animal {
 
         Dog& operator = (const Dog& rhs);
         
-        void    makeSound(void) const;
+        void    makeSound() const;
 };

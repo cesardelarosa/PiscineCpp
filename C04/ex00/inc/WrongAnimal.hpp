@@ -10,7 +10,7 @@ class   WrongAnimal {
 
         WrongAnimal& operator = (const WrongAnimal& rhs);
         
-        void    makeSound(void) const;
+        void    makeSound() const;
 
     protected:
         std::string type;

@@ -19,7 +19,7 @@ Cat& Cat::operator=(const Cat& rhs) {
     return *this;
 }
 
-void Cat::makeSound(void) const
+void Cat::makeSound() const
 {
     std::cout << "MEOWWWW" << std::endl;
 }

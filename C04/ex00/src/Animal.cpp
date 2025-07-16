@@ -17,7 +17,7 @@ Animal& Animal::operator=(const Animal& rhs) {
     return *this;
 }
 
-void Animal::makeSound(void) const
+void Animal::makeSound() const
 {
     std::cout << "*Animal generic sound*" << std::endl;
 }

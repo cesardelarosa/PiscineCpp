@@ -2,7 +2,7 @@
 #include "HumanA.hpp"
 #include "HumanB.hpp"
 
-int main(void)
+int main()
 {
     Weapon  clubA = Weapon("crude spiked club");
     Weapon  clubB = Weapon("crude spiked club");
@@ -17,5 +17,5 @@ int main(void)
     jim.attack();
     clubB.setType("some other type of club");
     jim.attack();
-    return (0);
+    return 0;
 }

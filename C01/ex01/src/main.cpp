@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-#include "Zombie.h"
 
-int main(void)
+int main()
 {
     int n = 5;
     std::string name = "zombie";
@@ -21,7 +20,7 @@ int main(void)
     for(int i = 0; i < n; i++)
     {
         horde[i].announce();
-        delete &horde[i];
     }
-    return (0);
+    delete[] horde;
+    return 0;
 }

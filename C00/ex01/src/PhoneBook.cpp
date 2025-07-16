@@ -28,7 +28,7 @@ void PhoneBook::search() {
     std::cout << "Enter index to view details (0 to " << _count - 1 << "): ";
     
     std::string line;
-    if (!std::getline(std::cin, line)) {
+    if (!std::getline(std::cin, line) || line.empty()) {
         return;
     }
 

@@ -1,21 +1,13 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 19:28:21 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/07/08 19:28:21 by cde-la-r         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+ #include "Zombie.hpp"
 
-#include "Zombie.hpp"
-#include "Zombie.h"
-
-// Creo que falta el destructor
-int main(void)
+int main()
 {
-    randomChump("puta");
-    return (0);
+    Zombie* heap_zombie;
+
+    heap_zombie = newZombie("Heapy");
+    heap_zombie->announce();
+    delete heap_zombie;
+
+    randomChump("Stacky");
+    return 0;
 }

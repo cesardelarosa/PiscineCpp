@@ -4,16 +4,16 @@
 #include <string>
 #include <cstdlib>
 
-void    ft_error(std::string str, int status)
+void    ft_error(const std::string& str, int status)
 {
-    std::cout << "Error: " << str << std::endl;
+    std::cerr << "Error: " << str << std::endl;
     std::exit(status % 256);
 }
 
 std::string replaceLine(std::string line, const std::string& s1, const std::string& s2)
 {
     if (s1.empty())
-        return (line);
+        return line;
     
     std::string result;
     size_t  pos = 0;
@@ -27,10 +27,10 @@ std::string replaceLine(std::string line, const std::string& s1, const std::stri
     }
     result.append(line, lastPos, line.length() - lastPos);
 
-    return (result);
+    return result;
 }
 
-int main(int argc, char **argv)
+int main(int argc, char* argv[])
 {
     if (argc != 4)
         ft_error("Invalid number of parameters (must be 3)", 1);
@@ -62,5 +62,5 @@ int main(int argc, char **argv)
     inputFile.close();
     outputFile.close();
 
-    return (0);
+    return 0;
 }

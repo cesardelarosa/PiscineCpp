@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-int main(void) {
+int main() {
     PhoneBook   phonebook;
     std::string cmd;
 
@@ -21,5 +21,5 @@ int main(void) {
         }
     }
 
-    return (0);
+    return 0;
 }

@@ -2,7 +2,7 @@
 #include <cmath>
 #include "Fixed.hpp"
 
-Fixed::Fixed(void) : value(0)
+Fixed::Fixed() : value(0)
 {
     std::cout << "Default constructor called" << std::endl;
 }
@@ -30,24 +30,24 @@ Fixed&  Fixed::operator = (const Fixed& copy)
     std::cout << "Copy assignment operator called" << std::endl;
     if (this != &copy)
         setRawBits(copy.getRawBits());
-    return (*this);
+    return *this;
 }
 
 std::ostream& operator << (std::ostream& os, const Fixed& fixed)
 {
     os << fixed.toFloat();
-    return (os);
+    return os;
 }
 
-Fixed::~Fixed(void)
+Fixed::~Fixed()
 {
     std::cout << "Destructor called" << std::endl;
 }
 
-int         Fixed::getRawBits(void) const
+int         Fixed::getRawBits() const
 {
     std::cout << "getRawBits called" << std::endl;
-    return (value);
+    return value;
 }
 
 void        Fixed::setRawBits(int const raw)
@@ -56,12 +56,12 @@ void        Fixed::setRawBits(int const raw)
     value = raw;
 }
 
-float       Fixed::toFloat(void) const
+float       Fixed::toFloat() const
 {
-    return (static_cast<float>(this->value) / (1 << this->nFractBits));
+    return static_cast<float>(this->value) / (1 << this->nFractBits);
 }
 
-int       Fixed::toInt(void) const
+int       Fixed::toInt() const
 {
-    return (static_cast<int>(this->value >> this->nFractBits));
+    return static_cast<int>(this->value >> this->nFractBits);
 }

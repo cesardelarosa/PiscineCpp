@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Fixed.hpp"
 
-int main(void)
+int main()
 {
     Fixed   a;
     Fixed   b(10);
@@ -25,5 +25,5 @@ int main(void)
     std::cout << "c is " << c.toFloat() << " as float" << std::endl;
     std::cout << "d is " << d.toFloat() << " as float" << std::endl;
 
-    return (0);
+    return 0;
 }

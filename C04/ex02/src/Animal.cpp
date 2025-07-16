@@ -21,7 +21,7 @@ Animal& Animal::operator=(const Animal& rhs) {
     return *this;
 }
 
-std::string Animal::getType(void) const
+std::string Animal::getType() const
 {
     return (this->type);
 }

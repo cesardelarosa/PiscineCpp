@@ -1,62 +1,47 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 14:45:56 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/04/20 18:31:21 by cesi             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Contact.hpp"
 #include <iostream>
 #include <iomanip>
 
-const Contact::t_field Contact::_fields[] = {
-    {"First Name", &Contact::_firstName},
-    {"Last Name", &Contact::_lastName},
-    {"Nickname", &Contact::_nickName},
-    {"Phone Number", &Contact::_phoneNumber},
-    {"Darkest Secret", &Contact::_darkestSecret},
-    {NULL, NULL}
-};
+Contact::Contact() {}
+Contact::~Contact() {}
 
-Contact::Contact() { }
-Contact::~Contact() { }
-
-void Contact::fillFromPrompt()
-{
-    for (int i = 0; _fields[i].prompt; i++)
-    {
-        std::string tmp;
-        do {
-            std::cout << _fields[i].prompt << ": ";
-            std::getline(std::cin, tmp);
-        } while (tmp.empty());
-        this->*(_fields[i].member) = tmp;
+static std::string formatField(const std::string& s) {
+    if (s.length() > 10) {
+        return (s.substr(0, 9) + ".");
     }
+    return (s);
+}
+
+std::string Contact::_prompt(const std::string& prompt) {
+    std::string input;
+
+    do {
+        std::cout << prompt;
+        std::getline(std::cin, input);
+    } while (input.empty());
+
+    return (input);
+}
+
+void Contact::fillFromPrompt() {
+    _firstName = _prompt("First Name: ");
+    _lastName = _prompt("Last Name: ");
+    _nickName = _prompt("Nickname: ");
+    _phoneNumber = _prompt("Phone Number: ");
+    _darkestSecret = _prompt("Darkest Secret: ");
+
     std::cout << std::endl;
 }
 
-void Contact::printCard() const
-{
-    for (int i = 0; _fields[i].prompt; i++)
-    {
-        std::cout << _fields[i].prompt << ": " << this->*(_fields[i].member) << std::endl;
-    }
+void Contact::printCard() const {
+    std::cout << "First Name: " << _firstName << std::endl;
+    std::cout << "Last Name: " << _lastName << std::endl;
+    std::cout << "Nickname: " << _nickName << std::endl;
+    std::cout << "Phone Number: " << _phoneNumber << std::endl;
+    std::cout << "Darkest Secret: " << _darkestSecret << std::endl;
 }
 
-static std::string formatField(const std::string& s)
-{
-    if (s.size() <= 10)
-        return (s);
-    return (s.substr(0, 9) + ".");
-}
-
-void Contact::printRow(int index) const
-{
+void Contact::printRow(size_t index) const {
     std::cout << std::setw(10) << std::right << index << "|";
     std::cout << std::setw(10) << std::right << formatField(_firstName) << "|";
     std::cout << std::setw(10) << std::right << formatField(_lastName) << "|";

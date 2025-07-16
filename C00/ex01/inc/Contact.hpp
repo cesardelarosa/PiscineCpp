@@ -1,35 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Contact.hpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cde-la-r <code@cesardelarosa.xyz>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 11:42:03 by cde-la-r          #+#    #+#             */
-/*   Updated: 2025/04/20 11:45:30 by cesi             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #pragma once
 #include <string>
+#include <cstddef>
 
-class   Contact
-{
+class Contact {
     public:
-        typedef struct s_field {
-            const char* prompt;
-            std::string Contact::* member;
-        } t_field;
-
         Contact();
         ~Contact();
 
         void    fillFromPrompt();
-        void    printRow(int index) const;
+        void    printRow(size_t index) const;
         void    printCard() const;
 
     private:
-        static const t_field    _fields[];
+        std::string _prompt(const std::string& prompt);
 
         std::string _firstName;
         std::string _lastName;

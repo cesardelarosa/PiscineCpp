@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cmath>
 
-Fixed::Fixed(void) : value(0) {}
+Fixed::Fixed() : value(0) {}
 
 Fixed::Fixed(const Fixed& copy) {
     *this = copy;
@@ -16,15 +16,15 @@ Fixed::Fixed(const float f) {
     this->value = roundf(f * (1 << nFractBits));
 }
 
-Fixed::~Fixed(void) {}
+Fixed::~Fixed() {}
 
 Fixed&  Fixed::operator=(const Fixed& rhs) {
     if (this != &rhs)
         this->value = rhs.getRawBits();
-    return (*this);
+    return *this;
 }
 
-int Fixed::getRawBits(void) const {
+int Fixed::getRawBits() const {
     return this->value;
 }
 
@@ -32,17 +32,17 @@ void Fixed::setRawBits(int const raw) {
     this->value = raw;
 }
 
-float Fixed::toFloat(void) const {
+float Fixed::toFloat() const {
     return static_cast<float>(this->value) / (1 << nFractBits);
 }
 
-int Fixed::toInt(void) const {
+int Fixed::toInt() const {
     return this->value >> nFractBits;
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
     os << fixed.toFloat();
-    return (os);
+    return os;
 }
 
 bool Fixed::operator>(const Fixed& rhs) const {
@@ -85,7 +85,7 @@ Fixed Fixed::operator/(const Fixed& rhs) const {
     return Fixed(this->toFloat() / rhs.toFloat());
 }
 
-Fixed& Fixed::operator++(void) {
+Fixed& Fixed::operator++() {
     this->value++;
     return *this;
 }
@@ -96,7 +96,7 @@ Fixed Fixed::operator++(int) {
     return tmp;
 }
 
-Fixed& Fixed::operator--(void) {
+Fixed& Fixed::operator--() {
     this->value--;
     return *this;
 }

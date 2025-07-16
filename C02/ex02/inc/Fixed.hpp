@@ -4,11 +4,11 @@
 class   Fixed
 {
     public:
-        Fixed(void);
+        Fixed();
         Fixed(const Fixed& copy);
         Fixed(const int n);
         Fixed(const float f);
-        ~Fixed(void);
+        ~Fixed();
 
         Fixed&  operator=(const Fixed& rhs);
 
@@ -24,9 +24,9 @@ class   Fixed
         Fixed   operator*(const Fixed& rhs) const;
         Fixed   operator/(const Fixed& rhs) const;
         
-        Fixed&  operator++(void);
+        Fixed&  operator++();
         Fixed   operator++(int);
-        Fixed&  operator--(void);
+        Fixed&  operator--();
         Fixed   operator--(int);
         
         static Fixed&       min(Fixed& a, Fixed& b);
@@ -34,10 +34,10 @@ class   Fixed
         static Fixed&       max(Fixed& a, Fixed& b);
         static const Fixed& max(const Fixed& a, const Fixed& b);
 
-        int     getRawBits(void) const;
+        int     getRawBits() const;
         void    setRawBits(int const raw);
-        float   toFloat(void) const;
-        int     toInt(void) const;
+        float   toFloat() const;
+        int     toInt() const;
 
     private:
         int                 value;

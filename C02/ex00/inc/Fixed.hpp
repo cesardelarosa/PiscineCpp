@@ -4,12 +4,12 @@ class   Fixed
 {
     public:
         
-        Fixed(void);
+        Fixed();
         Fixed(const Fixed& copy);
         Fixed&   operator = (const Fixed& copy);
-        ~Fixed(void);
+        ~Fixed();
 
-        int     getRawBits(void) const;
+        int     getRawBits() const;
         void    setRawBits(int const raw);
         
     private:

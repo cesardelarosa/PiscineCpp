@@ -2,21 +2,29 @@
 #include <iostream>
 #include <string>
 
-int main() {
+int main()
+{
     PhoneBook   phonebook;
     std::string cmd;
 
-    while (true) {
+    while (true)
+    {
         std::cout << "> ";
-        if (!std::getline(std::cin, cmd)) {
+        if (!std::getline(std::cin, cmd))
+        {
             break;
         }
         
-        if (cmd == "EXIT") {
+        if (cmd == "EXIT")
+        {
             break;
-        } else if (cmd == "ADD") {
+        }
+        else if (cmd == "ADD")
+        {
             phonebook.add();
-        } else if (cmd == "SEARCH") {
+        }
+        else if (cmd == "SEARCH")
+        {
             phonebook.search();
         }
     }

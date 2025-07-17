@@ -3,16 +3,16 @@
 
 class Animal {
 
-public:
-  Animal();
-  Animal(const Animal &copy);
-  virtual ~Animal();
+  public:
+	Animal();
+	Animal(const Animal &copy);
+	virtual ~Animal();
 
-  Animal &operator=(const Animal &rhs);
+	Animal &operator=(const Animal &rhs);
 
-  virtual void makeSound() const;
-  std::string getType() const;
+	virtual void makeSound() const;
+	std::string getType() const;
 
-protected:
-  std::string type;
+  protected:
+	std::string type;
 };

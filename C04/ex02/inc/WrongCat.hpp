@@ -3,15 +3,15 @@
 
 class WrongCat : public WrongAnimal {
 
-public:
-  WrongCat();
-  WrongCat(const WrongCat &copy);
-  ~WrongCat();
+  public:
+	WrongCat();
+	WrongCat(const WrongCat &copy);
+	~WrongCat();
 
-  WrongCat &operator=(const WrongCat &rhs);
+	WrongCat &operator=(const WrongCat &rhs);
 
-  void makeSound() const;
+	void makeSound() const;
 
-protected:
-  std::string type;
+  protected:
+	std::string type;
 };

@@ -1,4 +1,8 @@
 #pragma once
+
+#ifndef PHONEBOOK_C
+#define PHONEBOOK_C
+
 #include "Contact.hpp"
 #include <cstddef>
 
@@ -16,3 +20,5 @@ class PhoneBook {
 	size_t _next;
 	size_t _count;
 };
+
+#endif // PHONEBOOK_C

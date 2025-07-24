@@ -1,4 +1,8 @@
 #pragma once
+
+#ifndef CONTACT_HPP
+#define CONTACT_HPP
+
 #include <cstddef>
 #include <string>
 
@@ -20,3 +24,5 @@ class Contact {
 	std::string _phoneNumber;
 	std::string _darkestSecret;
 };
+
+#endif // CONTACT_HPP

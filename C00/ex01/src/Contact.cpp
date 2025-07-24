@@ -1,6 +1,7 @@
 #include "Contact.hpp"
 #include <iomanip>
 #include <iostream>
+#include <cstdlib>
 
 Contact::Contact() {}
 Contact::~Contact() {}
@@ -18,6 +19,11 @@ std::string Contact::_prompt(const std::string &prompt) {
 	do {
 		std::cout << prompt;
 		std::getline(std::cin, input);
+		
+		if (std::cin.eof()) {
+            std::cout << "\nInput stream closed (Ctrl+D). Exiting." << std::endl;
+            std::exit(EXIT_SUCCESS);
+        }
 	} while (input.empty());
 
 	return input;

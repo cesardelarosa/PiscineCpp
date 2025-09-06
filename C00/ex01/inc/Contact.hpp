@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 

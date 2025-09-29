@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef FIXED_HPP
+# define FIXED_HPP
+
 class Fixed {
   public:
 	Fixed();
@@ -14,3 +17,5 @@ class Fixed {
 	int value;
 	static const int nFractBits = 8;
 };
+
+#endif	// FIXED_HPP

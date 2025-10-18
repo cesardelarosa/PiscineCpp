@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
+
 #include <string>
 
 class ClapTrap {
@@ -21,3 +24,5 @@ class ClapTrap {
 	unsigned int _energyPoints;
 	unsigned int _attackDamage;
 };
+
+#endif

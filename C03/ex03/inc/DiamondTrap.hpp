@@ -1,7 +1,11 @@
 #pragma once
-#include "FragTrap.hpp"
-#include "ScavTrap.hpp"
-#include <string>
+
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
+
+# include "FragTrap.hpp"
+# include "ScavTrap.hpp"
+# include <string>
 
 class DiamondTrap : public FragTrap, public ScavTrap {
   public:
@@ -16,3 +20,5 @@ class DiamondTrap : public FragTrap, public ScavTrap {
   private:
 	std::string _name;
 };
+
+#endif

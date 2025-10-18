@@ -1,5 +1,9 @@
+#pragma once
 
-#include "ClapTrap.hpp"
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
+
+# include "ClapTrap.hpp"
 
 class FragTrap : public ClapTrap {
 
@@ -15,3 +19,5 @@ class FragTrap : public ClapTrap {
 	void beRepaired(unsigned int amount);
 	void highFivesGuys();
 };
+
+#endif

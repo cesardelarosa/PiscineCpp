@@ -1,4 +1,8 @@
 #pragma once
+
+#ifndef SCAVTRAP_HPP
+# define SCAVTRAP_HPP
+
 #include "ClapTrap.hpp"
 
 class ScavTrap : public virtual ClapTrap {
@@ -15,3 +19,5 @@ class ScavTrap : public virtual ClapTrap {
 	void beRepaired(unsigned int amount);
 	void guardGate(void);
 };
+
+#endif

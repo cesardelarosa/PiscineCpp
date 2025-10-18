@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-	DiamondTrap diamond("DI4M-TP");
+	DiamondTrap diamond("DI4M-TR4P");
 	std::cout << std::endl;
 
 	diamond.attack("enemy");

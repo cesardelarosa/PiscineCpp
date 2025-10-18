@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-	FragTrap frag("FR4G-TP");
+	FragTrap frag("FR4G-TR4P");
 	frag.highFivesGuys();
 	std::cout << std::endl;
 

@@ -7,8 +7,8 @@ bool bsp(Point const a, Point const b, Point const c, Point const point) {
 	Fixed areaPBC = Point::area(point, b, c);
 	Fixed areaPCA = Point::area(point, c, a);
 
-	if (areaPAB == Fixed(0) || areaPBC == Fixed(0) || areaPCA == Fixde(0)) {
-		return false
+	if (areaPAB == Fixed(0) || areaPBC == Fixed(0) || areaPCA == Fixed(0)) {
+		return false;
 	}
 	return (areaABC == (areaPAB + areaPBC + areaPCA));
 }

@@ -2,7 +2,7 @@
 #include <iostream>
 
 int main() {
-	ScavTrap scav("SC4V-TP");
+	ScavTrap scav("SC4V-TRAP");
 	scav.guardGate();
 	std::cout << std::endl;
 

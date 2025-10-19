@@ -1,17 +1,23 @@
 #pragma once
-#include <string>
+
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
+
+# include <string>
 
 class WrongAnimal {
 
   public:
 	WrongAnimal();
 	WrongAnimal(const WrongAnimal &copy);
-	~WrongAnimal();
-
+	~WrongAnimal(); // NOT virtual (as required by subject)
 	WrongAnimal &operator=(const WrongAnimal &rhs);
 
-	void makeSound() const;
+	void makeSound() const; // NOT virtual (as required by subject)
+	std::string getType() const;
 
   protected:
 	std::string type;
 };
+
+#endif

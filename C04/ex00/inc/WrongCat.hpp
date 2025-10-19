@@ -1,5 +1,9 @@
 #pragma once
-#include "WrongAnimal.hpp"
+
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
+
+# include "WrongAnimal.hpp"
 
 class WrongCat : public WrongAnimal {
 
@@ -7,11 +11,9 @@ class WrongCat : public WrongAnimal {
 	WrongCat();
 	WrongCat(const WrongCat &copy);
 	~WrongCat();
-
 	WrongCat &operator=(const WrongCat &rhs);
 
-	void makeSound();
-
-  protected:
-	std::string type;
+	void makeSound() const;
 };
+
+#endif

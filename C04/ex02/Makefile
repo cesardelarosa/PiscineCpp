@@ -1,4 +1,4 @@
-NAME     = BrainedAnimal
+NAME     = AbstractAnimal
 
 SRCDIR   = src
 INCDIR   = inc

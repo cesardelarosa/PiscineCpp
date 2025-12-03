@@ -21,17 +21,17 @@ void testGuard(std::string title, void (*testFunc)()) {
 
 void testShrubbery() {
 	try {
-		Bureaucrat gardener("Gardener", 137);
+		Bureaucrat teacher("Teacher", 137);
 		Bureaucrat student("Student", 140);
-		ShrubberyCreationForm shrub("Home");
+		ShrubberyCreationForm shrub("Shrub");
 
-		std::cout << GREEN << gardener << RESET << std::endl;
+		std::cout << GREEN << teacher << RESET << std::endl;
 		std::cout << GREEN << student << RESET << std::endl;
 		std::cout << GREEN << shrub << RESET << std::endl;
 
 		std::cout << "\n[TEST] Executing unsigned form:" << std::endl;
 		try {
-			shrub.execute(gardener);
+			shrub.execute(teacher);
 			std::cout << RED << "Should not print (Unsigned executed)" << RESET << std::endl;
 		} catch (std::exception &e) {
 			std::cout << YELLOW << "Exception caught: " << e.what() << RESET << std::endl;
@@ -48,9 +48,9 @@ void testShrubbery() {
 			std::cout << YELLOW << "Exception caught: " << e.what() << RESET << std::endl;
 		}
 
-		std::cout << "\n[TEST] Successful execution (Gardener grade 137):" << std::endl;
-		gardener.executeForm(shrub);
-		std::cout << GREEN << "File 'Home_shrubbery' created." << RESET << std::endl;
+		std::cout << "\n[TEST] Successful execution (teacher grade 137):" << std::endl;
+		teacher.executeForm(shrub);
+		std::cout << GREEN << "File 'Shrub_shrubbery' created." << RESET << std::endl;
 	} catch (std::exception &e) {
 		std::cerr << RED << "Unexpected critical exception: " << e.what() << RESET << std::endl;
 	}
@@ -58,8 +58,8 @@ void testShrubbery() {
 
 void testRobotomy() {
 	try {
-		Bureaucrat doctor("Dr. House", 45);
-		RobotomyRequestForm robo("Bender");
+		Bureaucrat doctor("Marta", 45);
+		RobotomyRequestForm robo("C3PO");
 
 		std::cout << GREEN << doctor << RESET << std::endl;
 		std::cout << GREEN << robo << RESET << std::endl;
@@ -88,9 +88,9 @@ void testRobotomy() {
 
 void testPresidential() {
 	try {
-		Bureaucrat president("Zaphod", 5);
+		Bureaucrat president("President", 5);
 		Bureaucrat assistant("Assistant", 20);
-		PresidentialPardonForm pardon("Arthur Dent");
+		PresidentialPardonForm pardon("Criminal");
 
 		std::cout << GREEN << president << RESET << std::endl;
 		std::cout << GREEN << assistant << RESET << std::endl;

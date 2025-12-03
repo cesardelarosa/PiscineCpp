@@ -35,8 +35,8 @@ void ScalarConverter::convert(std::string const &literal) {
 		}
 	}
 
-	bool isNan = std::isnan(d);
-	bool isInf = std::isinf(d);
+	bool isNan = d != d;
+	bool isInf = fabs(d) == std::numeric_limits<double>::infinity();
 	bool isIntPossible = !isNan && !isInf &&
 						 d >= std::numeric_limits<int>::min() &&
 						 d <= std::numeric_limits<int>::max();

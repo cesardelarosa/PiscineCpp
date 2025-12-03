@@ -11,6 +11,8 @@ OBJS     = $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 CXX      = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -I$(INCDIR)
 
+TRASH    = *_shrubbery
+
 all: $(NAME)
 
 $(OBJDIR):
@@ -24,6 +26,7 @@ $(NAME): $(OBJS)
 
 clean:
 	rm -rf $(OBJDIR)
+	rm -rf $(TRASH)
 
 fclean: clean
 	rm -f $(NAME)

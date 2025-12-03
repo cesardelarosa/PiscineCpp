@@ -1,7 +1,6 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-// Constructors & Destructor
 Bureaucrat::Bureaucrat() : _name("Default"), _grade(150) {
 }
 
@@ -19,7 +18,6 @@ Bureaucrat::Bureaucrat(Bureaucrat const &other) : _name(other._name), _grade(oth
 Bureaucrat::~Bureaucrat() {
 }
 
-// Operators
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &other) {
 	if (this != &other) {
 		this->_grade = other._grade;
@@ -27,7 +25,6 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &other) {
 	return *this;
 }
 
-// Getters
 std::string const &Bureaucrat::getName() const {
 	return this->_name;
 }
@@ -36,7 +33,6 @@ int Bureaucrat::getGrade() const {
 	return this->_grade;
 }
 
-// Member Functions
 void Bureaucrat::incrementGrade() {
 	if (this->_grade <= 1)
 		throw GradeTooHighException();
@@ -59,7 +55,6 @@ void Bureaucrat::signForm(Form &form) {
 	}
 }
 
-// Exceptions
 const char *Bureaucrat::GradeTooHighException::what() const throw() {
 	return "Grade is too high";
 }
@@ -68,7 +63,6 @@ const char *Bureaucrat::GradeTooLowException::what() const throw() {
 	return "Grade is too low";
 }
 
-// Stream Operator
 std::ostream &operator<<(std::ostream &os, Bureaucrat const &bureaucrat) {
 	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
 	return os;

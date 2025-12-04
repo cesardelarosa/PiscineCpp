@@ -13,3 +13,4 @@
 !C0*/ex*/src/*.cpp
 !C0*/ex*/inc/*.hpp
 !C0*/ex*/inc/*.h
+!C0*/ex*/inc/*.tpp

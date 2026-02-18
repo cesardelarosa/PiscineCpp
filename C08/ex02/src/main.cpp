@@ -72,7 +72,13 @@ void list_comparison_test() {
 
 	l.push_back(5);
 	l.push_back(17);
+
+	std::cout << l.back() << std::endl;
+
 	l.pop_back();
+
+	std::cout << l.size() << std::endl;
+
 	l.push_back(3);
 	l.push_back(5);
 	l.push_back(737);

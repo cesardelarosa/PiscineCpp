@@ -19,6 +19,7 @@ class BitcoinExchange {
 	bool isValidValue(float value) const;
 
 	std::map<std::string, float> localData;
+	static const int MAX_VALUE = 1000;
 };
 
 #endif

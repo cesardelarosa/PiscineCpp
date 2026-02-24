@@ -22,6 +22,8 @@ class PmergeMe {
 	std::deque<int> _deque;
 	std::vector<int> _vector;
 
+	static const int n_print = 10;
+
 	void printBefore(int argc, char **argv) const;
 
 	std::vector<int> getInsertionOrder(int n_pairs);
@@ -97,14 +99,14 @@ void PmergeMe::parseData(Container &c, int argc, char **argv) {
 template <typename Container>
 void PmergeMe::printAfter(const Container &c) const {
 	std::cout << "After:  ";
-	int limit = (c.size() > 5) ? 5 : c.size();
+	int limit = (c.size() > n_print) ? n_print : c.size();
 
 	typename Container::const_iterator it = c.begin();
 	for (int i = 0; i < limit; i++, it++) {
 		std::cout << *it << " ";
 	}
 
-	if (c.size() > 5) {
+	if (c.size() > n_print) {
 		std::cout << "[...]";
 	}
 	std::cout << std::endl;

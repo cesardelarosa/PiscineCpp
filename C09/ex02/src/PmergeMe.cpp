@@ -48,13 +48,13 @@ void PmergeMe::process(int argc, char **argv) {
 
 void PmergeMe::printBefore(int argc, char **argv) const {
 	std::cout << "Before: ";
-	int limit = (argc - 1 > 5) ? 5 : argc - 1;
+	int limit = (argc - 1 > n_print) ? n_print : argc - 1;
 
 	for (int i = 1; i <= limit; i++) {
 		std::cout << argv[i] << " ";
 	}
 
-	if (argc - 1 > 5) {
+	if (argc - 1 > n_print) {
 		std::cout << "[...]";
 	}
 	std::cout << std::endl;
@@ -76,7 +76,7 @@ std::vector<int> PmergeMe::getInsertionOrder(int n_pairs) {
 		int top = (current_jacob > n_pairs) ? n_pairs : current_jacob;
 
 		for (int j = top; j > last_jacob; j--) {
-			order.push_back(j);
+			order.push_back(j - 2);
 		}
 		last_jacob = top;
 		if (last_jacob == n_pairs) {
@@ -108,8 +108,8 @@ void PmergeMe::fordJohnsonSort(std::vector<int> &vec){
 	std::vector<int> main;
 	std::vector<int> pend;
 
-	main.push_back(pairs[0].second);
 	main.push_back(pairs[0].first);
+	main.push_back(pairs[0].second);
 	for (size_t i = 1; i < pairs.size(); i++) {
 		main.push_back(pairs[i].first);
 		pend.push_back(pairs[i].second);
@@ -118,7 +118,7 @@ void PmergeMe::fordJohnsonSort(std::vector<int> &vec){
 	std::vector<int> order = getInsertionOrder(pairs.size());
 	
 	for (size_t i = 0; i < order.size(); i++) {
-		int target = pend[order[i] - 2];
+		int target = pend[order[i]];
 		std::vector<int>::iterator pos = std::lower_bound(main.begin(), main.end(), target);
 		main.insert(pos, target);
 	}

@@ -24,76 +24,56 @@ class PmergeMe {
 
 	static const int n_print = 10;
 
+	void parseData(std::vector<int> &c, int argc, char **argv);
+	void parseData(std::deque<int> &c, int argc, char **argv);
+
 	void printBefore(int argc, char **argv) const;
 
 	std::vector<int> getInsertionOrder(int n_pairs);
-	
+
 	void fordJohnsonSort(std::vector<int> &vec);
 	void fordJohnsonSort(std::deque<int> &deq);
 
-	template <typename PairContainer>
-	void sortPairs(PairContainer &pairs);
+	template <typename Iterator> void sortPairs(Iterator begin, Iterator end);
 
-	template <typename Container>
-	void parseData(Container &c, int argc, char **argv);
-
-	template <typename Container>
-	void printAfter(const Container &c) const;
+	template <typename Container> void printAfter(const Container &c) const;
 };
 
 // Template Implementations
 
-template <typename PairContainer>
-void PmergeMe::sortPairs(PairContainer &pairs) {
-	if (pairs.size() < 2) {
+template <typename Iterator>
+void PmergeMe::sortPairs(Iterator begin, Iterator end) {
+	if (std::distance(begin, end) < 2) {
 		return;
 	}
 
-	size_t mid = pairs.size() / 2;
-	PairContainer left(pairs.begin(), pairs.begin() + mid);
-	PairContainer right(pairs.begin() + mid, pairs.end());
+	Iterator mid = begin + std::distance(begin, end) / 2;
 
-	sortPairs(left);
-	sortPairs(right);
+	sortPairs(begin, mid);
+	sortPairs(mid, end);
 
-	size_t i = 0, j = 0, k = 0;
-	while (i < left.size() && j < right.size()) {
-		if (left[i].first <= right[j].first){
-			pairs[k++] = left[i++];
+	typedef typename std::iterator_traits<Iterator>::value_type value_type;
+	std::vector<value_type> temp;
+	temp.reserve(std::distance(begin, end));
+
+	Iterator i = begin;
+	Iterator j = mid;
+
+	while (i != mid && j != end) {
+		if (i->first <= j->first) {
+			temp.push_back(*i++);
 		} else {
-			pairs[k++] = right[j++];
+			temp.push_back(*j++);
 		}
 	}
-	while (i < left.size()) {
-		pairs[k++] = left[i++];
+	while (i != mid) {
+		temp.push_back(*i++);
 	}
-	while (j < right.size()) {
-		pairs[k++] = right[j++];
+	while (j != end) {
+		temp.push_back(*j++);
 	}
-}
 
-template <typename Container>
-void PmergeMe::parseData(Container &c, int argc, char **argv) {
-	for (int i = 1; i < argc; i++) {
-		std::string str = argv[i];
-
-		if (str.empty()) {
-			throw std::invalid_argument("Empty argument");
-		}
-
-		for (size_t j = 0; j < str.length(); j++) {
-			if (!isdigit(str[j]) && !(j == 0 && str[j] == '+')) {
-				throw std::invalid_argument("Invalid character in argument");
-			}
-		}
-
-		long n = std::atol(str.c_str());
-		if (n < 0 || n > std::numeric_limits<int>::max()) {
-			throw std::invalid_argument("Argument out of range");
-		}
-
-		c.push_back(static_cast<int>(n));
-	}
+	std::copy(temp.begin(), temp.end(), begin);
 }
 
 template <typename Container>

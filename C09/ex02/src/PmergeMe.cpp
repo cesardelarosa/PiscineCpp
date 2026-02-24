@@ -37,6 +37,7 @@ void PmergeMe::process(int argc, char **argv) {
 
 	printBefore(argc, argv);
 	printAfter(_vector);
+	printAfter(_deque);
 
 	std::cout << "Time to process a range of " << _vector.size()
 	          << " elements with std::vector : " << time_vec << " us" << std::endl;
@@ -100,7 +101,12 @@ void PmergeMe::fordJohnsonSort(std::vector<int> &vec){
 
 	std::vector<std::pair<int, int> > pairs;
 	for (size_t i = 0; i < vec.size(); i += 2) {
-		pairs.push_back(std::make_pair(vec[i], vec[i + 1]));
+		int	first = vec[i];
+		int second = vec[i + 1];
+		if (first < second) {
+			std::swap(first, second);
+		}
+		pairs.push_back(std::make_pair(first, second));
 	}
 
 	sortPairs(pairs);
@@ -108,8 +114,8 @@ void PmergeMe::fordJohnsonSort(std::vector<int> &vec){
 	std::vector<int> main;
 	std::vector<int> pend;
 
-	main.push_back(pairs[0].first);
 	main.push_back(pairs[0].second);
+	main.push_back(pairs[0].first);
 	for (size_t i = 1; i < pairs.size(); i++) {
 		main.push_back(pairs[i].first);
 		pend.push_back(pairs[i].second);
@@ -132,5 +138,51 @@ void PmergeMe::fordJohnsonSort(std::vector<int> &vec){
 }
 
 void PmergeMe::fordJohnsonSort(std::deque<int> &deq) {
-	(void)deq;
+	if (deq.size() < 2) {
+		return;
+	}
+
+	bool has_straggler = deq.size() % 2;
+	int straggler = -1;
+	if (has_straggler) {
+		straggler = deq.back();
+		deq.pop_back();
+	}
+
+	std::deque<std::pair<int, int> > pairs;
+	for (size_t i = 0; i < deq.size(); i += 2) {
+		int	first = deq[i];
+		int second = deq[i + 1];
+		if (first < second) {
+			std::swap(first, second);
+		}
+		pairs.push_back(std::make_pair(first, second));
+	}
+
+	sortPairs(pairs);
+	
+	std::deque<int> main;
+	std::deque<int> pend;
+
+	main.push_back(pairs[0].second);
+	main.push_back(pairs[0].first);
+	for (size_t i = 1; i < pairs.size(); i++) {
+		main.push_back(pairs[i].first);
+		pend.push_back(pairs[i].second);
+	}
+
+	std::vector<int> order = getInsertionOrder(pairs.size());
+	
+	for (size_t i = 0; i < order.size(); i++) {
+		int target = pend[order[i]];
+		std::deque<int>::iterator pos = std::lower_bound(main.begin(), main.end(), target);
+		main.insert(pos, target);
+	}
+
+	if (has_straggler) {
+		std::deque<int>::iterator pos = std::lower_bound(main.begin(), main.end(), straggler);
+		main.insert(pos, straggler);
+	}
+
+	deq = main;
 }

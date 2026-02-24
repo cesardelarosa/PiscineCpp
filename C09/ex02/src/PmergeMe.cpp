@@ -115,10 +115,10 @@ void PmergeMe::fordJohnsonSort(std::vector<int> &vec){
 		pend.push_back(pairs[i].second);
 	}
 
-	std::vector<int> order = getInsertionOrder(main.size());
+	std::vector<int> order = getInsertionOrder(pairs.size());
 	
 	for (size_t i = 0; i < order.size(); i++) {
-		int target = pend[order[i] - 1];
+		int target = pend[order[i] - 2];
 		std::vector<int>::iterator pos = std::lower_bound(main.begin(), main.end(), target);
 		main.insert(pos, target);
 	}

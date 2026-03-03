@@ -52,7 +52,7 @@ void PmergeMe::process(int argc, char **argv) {
 // Data Parsing
 
 void PmergeMe::parseData(std::vector<int> &c, int argc, char **argv) {
-	c.reserve(argc - 1);
+	c.reserve(static_cast<size_t>(argc - 1));
 
 	for (int i = 1; i < argc; i++) {
 		std::string str = argv[i];
@@ -117,25 +117,25 @@ void PmergeMe::printBefore(int argc, char **argv) const {
 
 // Jacobsthal Sequence Generator
 
-std::vector<int> PmergeMe::getInsertionOrder(int n) {
-	std::vector<int> order;
-	if (n <= 0) {
+std::vector<size_t> PmergeMe::getInsertionOrder(size_t n) {
+	std::vector<size_t> order;
+	if (n == 0) {
 		return order;
 	}
 
-	std::vector<int> jacob;
+	std::vector<size_t> jacob;
 	jacob.push_back(1);
 	jacob.push_back(3);
 	while (jacob.back() < n + 1) {
 		jacob.push_back(jacob.back() + 2 * jacob[jacob.size() - 2]);
 	}
 
-	int last_jacob = 1;
+	size_t last_jacob = 1;
 	for (size_t i = 1; i < jacob.size(); i++) {
-		int current_jacob = jacob[i];
-		int top = (current_jacob > n + 1) ? n + 1 : current_jacob;
+		size_t current_jacob = jacob[i];
+		size_t top = (current_jacob > n + 1) ? n + 1 : current_jacob;
 
-		for (int j = top; j > last_jacob; j--) {
+		for (size_t j = top; j > last_jacob; j--) {
 			order.push_back(j - 2);
 		}
 		last_jacob = top;
@@ -193,7 +193,7 @@ void PmergeMe::fordJohnsonRecursive(std::vector<int> &vec, size_t stride) {
 	}
 
 	size_t num_pend_blocks = pend_chain.size() / stride;
-	std::vector<int> order = getInsertionOrder(num_pend_blocks); 
+	std::vector<size_t> order = getInsertionOrder(num_pend_blocks); 
 	
 	std::vector<size_t> winner_positions(num_pend_blocks);
 	for (size_t i = 0; i < winner_positions.size(); ++i) {
@@ -281,7 +281,7 @@ void PmergeMe::fordJohnsonRecursive(std::deque<int> &deq, size_t stride) {
 	}
 
 	size_t num_pend_blocks = pend_chain.size() / stride;
-	std::vector<int> order = getInsertionOrder(num_pend_blocks); 
+	std::vector<size_t> order = getInsertionOrder(num_pend_blocks); 
 	
 	std::vector<size_t> winner_positions(num_pend_blocks);
 	for (size_t i = 0; i < winner_positions.size(); ++i) {

@@ -33,7 +33,7 @@ class PmergeMe {
 	void parseData(std::vector<int> &c, int argc, char **argv);
 	void parseData(std::deque<int> &c, int argc, char **argv);
 
-	std::vector<int> getInsertionOrder(int n_pairs);
+	std::vector<size_t> getInsertionOrder(size_t n);
 
 	void fordJohnsonSort(std::vector<int> &vec);
 	void fordJohnsonSort(std::deque<int> &deq);
@@ -47,14 +47,14 @@ class PmergeMe {
 template <typename Container>
 void PmergeMe::printAfter(const Container &c) const {
 	std::cout << "After:  ";
-	int limit = (c.size() > (size_t)n_print) ? n_print : c.size();
+	size_t limit = (c.size() > static_cast<size_t>(n_print)) ? static_cast<size_t>(n_print) : c.size();
 
 	typename Container::const_iterator it = c.begin();
-	for (int i = 0; i < limit; i++, it++) {
+	for (size_t i = 0; i < limit; i++, it++) {
 		std::cout << *it << " ";
 	}
 
-	if (c.size() > (size_t)n_print) {
+	if (c.size() > static_cast<size_t>(n_print)) {
 		std::cout << "[...]";
 	}
 	std::cout << std::endl;

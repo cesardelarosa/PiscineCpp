@@ -1,6 +1,7 @@
 #ifndef PMERGEME_HPP
 #define PMERGEME_HPP
 
+#include <algorithm>
 #include <cstdlib>
 #include <deque>
 #include <iostream>
@@ -24,69 +25,36 @@ class PmergeMe {
 
 	static const int n_print = 10;
 
+	void printBefore(int argc, char **argv) const;
+	
+	template <typename Container> 
+	void printAfter(const Container &c) const;
+
 	void parseData(std::vector<int> &c, int argc, char **argv);
 	void parseData(std::deque<int> &c, int argc, char **argv);
-
-	void printBefore(int argc, char **argv) const;
 
 	std::vector<int> getInsertionOrder(int n_pairs);
 
 	void fordJohnsonSort(std::vector<int> &vec);
 	void fordJohnsonSort(std::deque<int> &deq);
 
-	template <typename Iterator> void sortPairs(Iterator begin, Iterator end);
-
-	template <typename Container> void printAfter(const Container &c) const;
+	void fordJohnsonRecursive(std::vector<int> &vec, size_t stride);
+	void fordJohnsonRecursive(std::deque<int> &deq, size_t stride);
 };
 
 // Template Implementations
 
-template <typename Iterator>
-void PmergeMe::sortPairs(Iterator begin, Iterator end) {
-	if (std::distance(begin, end) < 2) {
-		return;
-	}
-
-	Iterator mid = begin + std::distance(begin, end) / 2;
-
-	sortPairs(begin, mid);
-	sortPairs(mid, end);
-
-	typedef typename std::iterator_traits<Iterator>::value_type value_type;
-	std::vector<value_type> temp;
-	temp.reserve(std::distance(begin, end));
-
-	Iterator i = begin;
-	Iterator j = mid;
-
-	while (i != mid && j != end) {
-		if (i->first <= j->first) {
-			temp.push_back(*i++);
-		} else {
-			temp.push_back(*j++);
-		}
-	}
-	while (i != mid) {
-		temp.push_back(*i++);
-	}
-	while (j != end) {
-		temp.push_back(*j++);
-	}
-
-	std::copy(temp.begin(), temp.end(), begin);
-}
-
 template <typename Container>
 void PmergeMe::printAfter(const Container &c) const {
 	std::cout << "After:  ";
-	int limit = (c.size() > n_print) ? n_print : c.size();
+	int limit = (c.size() > (size_t)n_print) ? n_print : c.size();
 
 	typename Container::const_iterator it = c.begin();
 	for (int i = 0; i < limit; i++, it++) {
 		std::cout << *it << " ";
 	}
 
-	if (c.size() > n_print) {
+	if (c.size() > (size_t)n_print) {
 		std::cout << "[...]";
 	}
 	std::cout << std::endl;

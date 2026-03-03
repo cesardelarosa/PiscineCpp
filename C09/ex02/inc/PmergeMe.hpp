@@ -37,6 +37,10 @@ class PmergeMe {
 
 	template <typename Container> void printAfter(const Container &c) const;
 
+	void validateSort() const;
+
+	long getTime() const;
+
 	void parseData(std::vector<int> &c, int argc, char **argv);
 	void parseData(std::deque<int> &c, int argc, char **argv);
 

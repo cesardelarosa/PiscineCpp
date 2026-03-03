@@ -17,44 +17,76 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &rhs) {
 
 PmergeMe::~PmergeMe() {}
 
+// Validation Utils
+
+void PmergeMe::validateSort() const {
+	if (_vector.size() != _deque.size()) {
+		throw std::logic_error("Error: Containers have different sizes.");
+	}
+
+	if (_vector.empty()) {
+		return;
+	}
+
+	if (_vector[0] != _deque[0]) {
+		throw std::logic_error("Error: Container results do not match.");
+	}
+
+	for (size_t i = 1; i < _vector.size(); i++) {
+		if (_vector[i - 1] > _vector[i]) {
+			throw std::logic_error(
+				"Error: std::vector is not sorted correctly.");
+		}
+		if (_deque[i - 1] > _deque[i]) {
+			throw std::logic_error(
+				"Error: std::deque is not sorted correctly.");
+		}
+		if (_vector[i] != _deque[i]) {
+			throw std::logic_error("Error: Container results do not match.");
+		}
+	}
+}
+
+long PmergeMe::getTime() const {
+	struct timeval time;
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000000L) + time.tv_usec;
+}
+
 // Process Routine
 
 void PmergeMe::process(int argc, char **argv) {
-	struct timeval start, end;
 	long time_vec_parse, time_vec_sort, time_vec_total;
 	long time_deq_parse, time_deq_sort, time_deq_total;
+	long start;
 
 	// Vector Phase
 
-	gettimeofday(&start, NULL);
+	start = getTime();
 	parseData(_vector, argc, argv);
-	gettimeofday(&end, NULL);
-	time_vec_parse =
-		(end.tv_sec - start.tv_sec) * 1000000L + (end.tv_usec - start.tv_usec);
+	time_vec_parse = getTime() - start;
 
-	gettimeofday(&start, NULL);
+	start = getTime();
 	fordJohnsonSort(_vector);
-	gettimeofday(&end, NULL);
-	time_vec_sort =
-		(end.tv_sec - start.tv_sec) * 1000000L + (end.tv_usec - start.tv_usec);
+	time_vec_sort = getTime() - start;
 
 	time_vec_total = time_vec_parse + time_vec_sort;
 
 	// Deque Phase
 
-	gettimeofday(&start, NULL);
+	start = getTime();
 	parseData(_deque, argc, argv);
-	gettimeofday(&end, NULL);
-	time_deq_parse =
-		(end.tv_sec - start.tv_sec) * 1000000L + (end.tv_usec - start.tv_usec);
+	time_deq_parse = getTime() - start;
 
-	gettimeofday(&start, NULL);
+	start = getTime();
 	fordJohnsonSort(_deque);
-	gettimeofday(&end, NULL);
-	time_deq_sort =
-		(end.tv_sec - start.tv_sec) * 1000000L + (end.tv_usec - start.tv_usec);
+	time_deq_sort = getTime() - start;
 
 	time_deq_total = time_deq_parse + time_deq_sort;
+
+	// Validation Phase
+
+	validateSort();
 
 	// Printing Phase
 

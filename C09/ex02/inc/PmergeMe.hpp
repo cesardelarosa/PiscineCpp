@@ -10,6 +10,14 @@
 #include <string>
 #include <vector>
 
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+#define BLUE "\033[34m"
+#define PINK "\033[35m"
+#define CYAN "\033[36m"
+
 class PmergeMe {
   public:
 	PmergeMe();
@@ -26,9 +34,8 @@ class PmergeMe {
 	static const int n_print = 10;
 
 	void printBefore(int argc, char **argv) const;
-	
-	template <typename Container> 
-	void printAfter(const Container &c) const;
+
+	template <typename Container> void printAfter(const Container &c) const;
 
 	void parseData(std::vector<int> &c, int argc, char **argv);
 	void parseData(std::deque<int> &c, int argc, char **argv);
@@ -46,8 +53,9 @@ class PmergeMe {
 
 template <typename Container>
 void PmergeMe::printAfter(const Container &c) const {
-	std::cout << "After:  ";
-	size_t limit = (c.size() > static_cast<size_t>(n_print)) ? static_cast<size_t>(n_print) : c.size();
+	size_t limit = (c.size() > static_cast<size_t>(n_print))
+					   ? static_cast<size_t>(n_print)
+					   : c.size();
 
 	typename Container::const_iterator it = c.begin();
 	for (size_t i = 0; i < limit; i++, it++) {

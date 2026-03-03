@@ -33,6 +33,12 @@ class PmergeMe {
 
 	static const int n_print = 10;
 
+	size_t _vec_comparisons;
+	size_t _deq_comparisons;
+
+	bool compareVec(int a, int b);
+	bool compareDeq(int a, int b);
+
 	void printBefore(int argc, char **argv) const;
 
 	template <typename Container> void printAfter(const Container &c) const;

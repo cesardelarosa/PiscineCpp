@@ -3,7 +3,7 @@
 
 // Orthodox Canonical Form
 
-PmergeMe::PmergeMe() {}
+PmergeMe::PmergeMe() : _vec_comparisons(0), _deq_comparisons(0) {}
 
 PmergeMe::PmergeMe(const PmergeMe &src) { *this = src; }
 
@@ -11,11 +11,24 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &rhs) {
 	if (this != &rhs) {
 		this->_deque = rhs._deque;
 		this->_vector = rhs._vector;
+		this->_vec_comparisons = rhs._vec_comparisons;
+		this->_deq_comparisons = rhs._deq_comparisons;
 	}
 	return *this;
 }
 
 PmergeMe::~PmergeMe() {}
+
+// Count comparisons
+bool PmergeMe::compareVec(int a, int b) {
+	_vec_comparisons++;
+	return a < b;
+}
+
+bool PmergeMe::compareDeq(int a, int b) {
+	_deq_comparisons++;
+	return a < b;
+}
 
 // Validation Utils
 
@@ -60,6 +73,10 @@ void PmergeMe::process(int argc, char **argv) {
 	long time_deq_parse, time_deq_sort, time_deq_total;
 	long start;
 
+	// Reseteamos contadores
+	_vec_comparisons = 0;
+	_deq_comparisons = 0;
+
 	// Vector Phase
 
 	start = getTime();
@@ -100,13 +117,15 @@ void PmergeMe::process(int argc, char **argv) {
 			  << RESET << " elements with " << CYAN << "std::vector" << RESET
 			  << ": " << YELLOW << time_vec_total << " us" << RESET
 			  << " (Parse: " << time_vec_parse
-			  << " us | Sort: " << time_vec_sort << " us)" << std::endl;
+			  << " us | Sort: " << time_vec_sort << " us & " << _vec_comparisons
+			  << " comparisons)" << std::endl;
 
 	std::cout << "Time to process a range of " << PINK << _deque.size() << RESET
 			  << " elements with " << BLUE << "std::deque" << RESET << ":  "
 			  << YELLOW << time_deq_total << " us" << RESET
 			  << " (Parse: " << time_deq_parse
-			  << " us | Sort: " << time_deq_sort << " us)" << std::endl;
+			  << " us | Sort: " << time_deq_sort << " us & " << _deq_comparisons
+			  << " comparisons)" << std::endl;
 }
 
 // Data Parsing
@@ -221,7 +240,7 @@ void PmergeMe::fordJohnsonRecursive(std::vector<int> &vec, size_t stride) {
 		size_t left_winner_idx = (2 * i + 1) * stride - 1;
 		size_t right_winner_idx = (2 * i + 2) * stride - 1;
 
-		if (vec[left_winner_idx] > vec[right_winner_idx]) {
+		if (compareVec(vec[right_winner_idx], vec[left_winner_idx])) {
 			std::vector<int>::iterator left_start =
 				vec.begin() + (2 * i) * stride;
 			std::vector<int>::iterator left_end = left_start + stride;
@@ -277,7 +296,8 @@ void PmergeMe::fordJohnsonRecursive(std::vector<int> &vec, size_t stride) {
 		size_t high = bound_block;
 		while (low < high) {
 			size_t mid = low + (high - low) / 2;
-			if (main_chain[(mid + 1) * stride - 1] < b_value) {
+
+			if (compareVec(main_chain[(mid + 1) * stride - 1], b_value)) {
 				low = mid + 1;
 			} else {
 				high = mid;
@@ -320,7 +340,7 @@ void PmergeMe::fordJohnsonRecursive(std::deque<int> &deq, size_t stride) {
 		size_t left_winner_idx = (2 * i + 1) * stride - 1;
 		size_t right_winner_idx = (2 * i + 2) * stride - 1;
 
-		if (deq[left_winner_idx] > deq[right_winner_idx]) {
+		if (compareDeq(deq[right_winner_idx], deq[left_winner_idx])) {
 			std::deque<int>::iterator left_start =
 				deq.begin() + (2 * i) * stride;
 			std::deque<int>::iterator left_end = left_start + stride;
@@ -373,7 +393,8 @@ void PmergeMe::fordJohnsonRecursive(std::deque<int> &deq, size_t stride) {
 		size_t high = bound_block;
 		while (low < high) {
 			size_t mid = low + (high - low) / 2;
-			if (main_chain[(mid + 1) * stride - 1] < b_value) {
+
+			if (compareDeq(main_chain[(mid + 1) * stride - 1], b_value)) {
 				low = mid + 1;
 			} else {
 				high = mid;

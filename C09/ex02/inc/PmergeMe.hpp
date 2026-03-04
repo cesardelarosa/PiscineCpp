@@ -9,6 +9,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <cerrno>
 
 #define RESET "\033[0m"
 #define RED "\033[31m"

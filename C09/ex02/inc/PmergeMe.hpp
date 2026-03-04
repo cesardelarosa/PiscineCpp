@@ -41,11 +41,15 @@ class PmergeMe {
 
 	void printBefore(int argc, char **argv) const;
 
-	template <typename Container> void printAfter(const Container &c) const;
+	template <typename Container> void printSequence(const Container &c) const;
 
 	void validateSort() const;
 
 	long getTime() const;
+
+	// Template Declarations
+	template <typename Container>
+	void parseDataTemplate(Container &c, int argc, char **argv);
 
 	void parseData(std::vector<int> &c, int argc, char **argv);
 	void parseData(std::deque<int> &c, int argc, char **argv);
@@ -62,7 +66,7 @@ class PmergeMe {
 // Template Implementations
 
 template <typename Container>
-void PmergeMe::printAfter(const Container &c) const {
+void PmergeMe::printSequence(const Container &c) const {
 	size_t limit = (c.size() > static_cast<size_t>(n_print))
 					   ? static_cast<size_t>(n_print)
 					   : c.size();
@@ -76,6 +80,34 @@ void PmergeMe::printAfter(const Container &c) const {
 		std::cout << "[...]";
 	}
 	std::cout << std::endl;
+}
+
+template <typename Container>
+void PmergeMe::parseDataTemplate(Container &c, int argc, char **argv) {
+	for (int i = 1; i < argc; i++) {
+		std::string str = argv[i];
+
+		if (str.empty() || (str.length() == 1 && str[0] == '+')) {
+			throw std::invalid_argument("Empty or invalid argument");
+		}
+
+		for (size_t j = 0; j < str.length(); j++) {
+			if (!isdigit(str[j]) && !(j == 0 && str[j] == '+')) {
+				throw std::invalid_argument("Invalid character in argument");
+			}
+		}
+
+		char *endptr;
+		errno = 0;
+		long n = std::strtol(str.c_str(), &endptr, 10);
+
+		if (errno == ERANGE || *endptr != '\0' || n < 0 ||
+			n > std::numeric_limits<int>::max()) {
+			throw std::invalid_argument("Argument out of range");
+		}
+
+		c.push_back(static_cast<int>(n));
+	}
 }
 
 #endif

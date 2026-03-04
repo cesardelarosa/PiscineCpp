@@ -83,6 +83,8 @@ void PmergeMe::process(int argc, char **argv) {
 	parseData(_vector, argc, argv);
 	time_vec_parse = getTime() - start;
 
+	std::vector<int> parsed_sequence = _vector;
+
 	start = getTime();
 	fordJohnsonSort(_vector);
 	time_vec_sort = getTime() - start;
@@ -108,10 +110,10 @@ void PmergeMe::process(int argc, char **argv) {
 	// Printing Phase
 
 	std::cout << RED << "Before: " << RESET;
-	printBefore(argc, argv);
+	printSequence(parsed_sequence);
 
 	std::cout << GREEN << "After:  " << RESET;
-	printAfter(_vector);
+	printSequence(_vector);
 
 	std::cout << "Time to process a range of " << PINK << _vector.size()
 			  << RESET << " elements with " << CYAN << "std::vector" << RESET
@@ -132,65 +134,11 @@ void PmergeMe::process(int argc, char **argv) {
 
 void PmergeMe::parseData(std::vector<int> &c, int argc, char **argv) {
 	c.reserve(static_cast<size_t>(argc - 1));
-
-	for (int i = 1; i < argc; i++) {
-		std::string str = argv[i];
-
-		if (str.empty()) {
-			throw std::invalid_argument("Empty argument");
-		}
-
-		for (size_t j = 0; j < str.length(); j++) {
-			if (!isdigit(str[j]) && !(j == 0 && str[j] == '+')) {
-				throw std::invalid_argument("Invalid character in argument");
-			}
-		}
-
-		long n = std::atol(str.c_str());
-		if (n < 0 || n > std::numeric_limits<int>::max()) {
-			throw std::invalid_argument("Argument out of range");
-		}
-
-		c.push_back(static_cast<int>(n));
-	}
+	parseDataTemplate(c, argc, argv);
 }
 
 void PmergeMe::parseData(std::deque<int> &c, int argc, char **argv) {
-	for (int i = 1; i < argc; i++) {
-		std::string str = argv[i];
-
-		if (str.empty()) {
-			throw std::invalid_argument("Empty argument");
-		}
-
-		for (size_t j = 0; j < str.length(); j++) {
-			if (!isdigit(str[j]) && !(j == 0 && str[j] == '+')) {
-				throw std::invalid_argument("Invalid character in argument");
-			}
-		}
-
-		long n = std::atol(str.c_str());
-		if (n < 0 || n > std::numeric_limits<int>::max()) {
-			throw std::invalid_argument("Argument out of range");
-		}
-
-		c.push_back(static_cast<int>(n));
-	}
-}
-
-// Print Utils
-
-void PmergeMe::printBefore(int argc, char **argv) const {
-	int limit = (argc - 1 > n_print) ? n_print : argc - 1;
-
-	for (int i = 1; i <= limit; i++) {
-		std::cout << argv[i] << " ";
-	}
-
-	if (argc - 1 > n_print) {
-		std::cout << "[...]";
-	}
-	std::cout << std::endl;
+	parseDataTemplate(c, argc, argv);
 }
 
 // Jacobsthal Sequence Generator

@@ -1,13 +1,13 @@
 # Resumen de Proyectos Piscine C++
 
-## C00 - Un Megáfono para el Mundo
+## C00 - De C a C++
 Este módulo introduce los fundamentos de C++, sustituyendo las funciones de C por **streams de entrada/salida estándar** y manejando la clase **std::string**. Se centra en la **encapsulación** de datos mediante clases y la distinción entre miembros privados y públicos para proteger la integridad de los objetos. Finalmente, se explora el uso de **miembros estáticos** para gestionar información compartida y el uso inicial de contenedores e **iteradores**.
 
 * ex00: Procesamiento de argumentos de terminal y salida estándar con `std::cout`.
 * ex01: Creación de clases, ocultación de datos y gestión de arrays de objetos.
 * ex02: Implementación de atributos y funciones estáticas para estados globales de clase.
 
-## C01 - Abriendo la Caja de Pandora
+## C01 - Manejo de memoria y manipulación de archivos
 El bloque profundiza en la gestión de memoria, comparando la **asignación dinámica** en el montón frente a la asignación en la pila. Se introducen las **referencias** como una alternativa segura a los punteros y se practica la manipulación de archivos mediante **flujos de archivos (fstream)**. Concluye con el uso de **punteros a funciones miembro** y el control de flujo con comportamientos de **fallthrough**.
 
 * ex00: Diferencia de ciclo de vida entre objetos en stack y heap mediante `new`/`delete`.
@@ -18,7 +18,7 @@ El bloque profundiza en la gestión de memoria, comparando la **asignación din�
 * ex05: Despacho dinámico de métodos mediante punteros a funciones miembro.
 * ex06: Filtrado de niveles de ejecución mediante sentencias `switch` consecutivas.
 
-## C02 - Números de Punto Fijo y la Forma Canónica
+## C02 - Forma Canónica Ortodoxa
 Este módulo establece los estándares de robustez mediante la **Forma Canónica Ortodoxa**, asegurando que las clases gestionen correctamente copias y asignaciones. Se explora la **sobrecarga de operadores** para permitir que los objetos realicen operaciones aritméticas y lógicas de forma intuitiva. La aplicación práctica es la creación de un tipo de **punto fijo** para cálculos numéricos eficientes mediante **operaciones de bits**.
 
 * ex00: Implementación de constructores de copia y operadores de asignación básicos.
@@ -42,7 +42,7 @@ El módulo se enfoca en el **polimorfismo** y el uso de **funciones virtuales** 
 * ex02: Definición de clases que no pueden ser instanciadas directamente.
 * ex03: Simulación de sistemas mediante interfaces y gestión de inventarios de objetos.
 
-## C05 - Repetición y Excepciones
+## C05 - Gestión de Excepciones
 Este proyecto introduce el manejo de errores mediante la **gestión de excepciones**, permitiendo separar la lógica principal del control de fallos. Se practica el uso de bloques **try-catch** y la definición de **excepciones personalizadas** dentro de las clases. El sistema simula una burocracia donde las acciones requieren niveles de grado específicos, reforzando el uso de **clases abstractas**.
 
 * ex00: Definición y lanzamiento de excepciones de rango personalizadas.

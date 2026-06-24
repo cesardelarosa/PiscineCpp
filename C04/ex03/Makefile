@@ -4,7 +4,7 @@ SRCDIR   = src
 INCDIR   = inc
 OBJDIR   = obj
 
-SRCS     = main.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp
+SRCS     = main.cpp Ice.cpp Cure.cpp Character.cpp MateriaSource.cpp AMateria.cpp
 
 OBJS     = $(addprefix $(OBJDIR)/, $(SRCS:.cpp=.o))
 

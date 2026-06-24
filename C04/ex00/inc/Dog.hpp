@@ -1,20 +1,19 @@
 #pragma once
 
 #ifndef DOG_HPP
-# define DOG_HPP
+#define DOG_HPP
 
-# include "Animal.hpp"
+#include "Animal.hpp"
 
 class Dog : public Animal {
+ public:
+  Dog();
+  Dog(const Dog &copy);
+  ~Dog();
 
-  public:
-	Dog();
-	Dog(const Dog &copy);
-	~Dog();
+  Dog &operator=(const Dog &rhs);
 
-	Dog &operator=(const Dog &rhs);
-
-	void makeSound() const;
+  void makeSound() const;
 };
 
 #endif

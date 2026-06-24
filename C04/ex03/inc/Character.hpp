@@ -10,6 +10,12 @@ class Character : public ICharacter {
   std::string name;
   AMateria* inventory[4];
 
+  struct TrashNode {
+    AMateria* materia;
+    TrashNode* next;
+  };
+  TrashNode* trash;
+
  public:
   Character();
   Character(std::string const& name);

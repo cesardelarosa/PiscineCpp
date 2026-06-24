@@ -23,6 +23,14 @@ Character::~Character() {
   for (int i = 0; i < 4; i++) {
     if (inventory[i]) delete inventory[i];
   }
+
+  TrashNode* tmp;
+  while (trash) {
+    tmp = trash;
+    trash = trash->next;
+    delete tmp->materia;
+    delete tmp;
+  }
 }
 
 Character& Character::operator=(const Character& rhs) {
@@ -52,8 +60,13 @@ void Character::equip(AMateria* m) {
 }
 
 void Character::unequip(int idx) {
-  if (idx >= 0 && idx < 4) {
-    inventory[idx] = NULL;  // Do not delete the Materia
+  if (idx >= 0 && idx < 4 && inventory[idx]) {
+    TrashNode* newNode = new TrashNode();
+    newNode->materia = inventory[idx];
+    newNode->next = trash;
+    trash = newNode;
+
+    inventory[idx] = NULL;
   }
 }
 

@@ -2,15 +2,15 @@
 
 #include <iostream>
 
-Character::Character() : name("default_character") {
+Character::Character() : name("default_character"), trash(NULL) {
   for (int i = 0; i < 4; i++) inventory[i] = NULL;
 }
 
-Character::Character(std::string const& name) : name(name) {
+Character::Character(std::string const& name) : name(name), trash(NULL) {
   for (int i = 0; i < 4; i++) inventory[i] = NULL;
 }
 
-Character::Character(const Character& copy) : name(copy.name) {
+Character::Character(const Character& copy) : name(copy.name), trash(NULL) {
   for (int i = 0; i < 4; i++) {
     if (copy.inventory[i])
       inventory[i] = copy.inventory[i]->clone();
